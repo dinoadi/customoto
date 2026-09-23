@@ -1,0 +1,25 @@
+{
+  "pipeline": "Blender -> glTF -> gltf-transform draco -> /public/3d/",
+  "budget_per_file_kb": 400,
+  "budget_total_mb": 4,
+  "expected_files": [
+    "vixion_base_draco.glb",
+    "tank_teardrop.glb",
+    "tank_kapsul.glb",
+    "tank_sportster.glb",
+    "tank_tracker.glb",
+    "bar_clubman.glb",
+    "bar_clipon.glb",
+    "bar_fatbar.glb",
+    "wheel_17.glb",
+    "wheel_16.glb",
+    "tire_dual.glb",
+    "exhaust_mega.glb",
+    "exhaust_high.glb",
+    "lamp_7.glb",
+    "seat_single.glb",
+    "seat_cafe.glb"
+  ],
+  "mapping": "threeDAssetId in data/parts.ts (without .glb) -> filename + .glb",
+  "fallback": "Procedural Viewer3D stays active until GLB files land; no code change needed except useGLTF swap"
+}

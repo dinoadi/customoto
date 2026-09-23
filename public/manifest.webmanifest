@@ -1,0 +1,9 @@
+{
+  "name": "CUSTOMOTO — Studio Custom Motor",
+  "short_name": "CUSTOMOTO",
+  "start_url": "/konfigurator",
+  "display": "standalone",
+  "background_color": "#121210",
+  "theme_color": "#FF4D00",
+  "icons": []
+}
