@@ -2,7 +2,7 @@
 
 export const SITE = {
   name: "CUSTOMOTO",
-  domain: "https://customoto.id", // TODO: ganti domain asli (mis. customoto.vercel.app) setelah deploy
+  domain: "https://customoto.netlify.app", // Live Netlify — ganti domain sendiri bila sudah punya
   waNumber: "6280000000000", // TODO: ganti nomor WA bengkel asli
   address: "Jl. Bengkel No. 88, Bandung", // TODO: alamat asli
   hours: "Senin–Sabtu 09.00–18.00",
