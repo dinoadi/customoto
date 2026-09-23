@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { ALIRAN_LIST } from "@/data/aliran";
+import { SITE } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://customoto.id";
+  const base = SITE.domain;
   return [
     { url: `${base}/`, lastModified: new Date() },
     { url: `${base}/konfigurator`, lastModified: new Date() },
