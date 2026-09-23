@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { AR_MODELS } from "@/config/site";
 
-// Honest AR panel: checks if the GLB actually exists before showing AR buttons.
-// No fake AR — if the scan isn't uploaded yet, user keeps the procedural 3D.
+// Honest AR panel: consults /3d/available.json (actually-uploaded scans).
+// No blind GLB fetch, no console 404s — missing scan falls back to procedural 3D.
 export default function ARPanel({ basisId }: { basisId: string }) {
   const [status, setStatus] = useState<"checking" | "ready" | "missing">("checking");
   const model = AR_MODELS[basisId];
@@ -15,9 +15,14 @@ export default function ARPanel({ basisId }: { basisId: string }) {
       return;
     }
     let cancelled = false;
-    fetch(model.glb, { method: "HEAD" })
-      .then((r) => {
-        if (!cancelled) setStatus(r.ok ? "ready" : "missing");
+    fetch("/3d/available.json")
+      .then((r) => (r.ok ? r.json() : { models: [] }))
+      .then((data: unknown) => {
+        if (cancelled) return;
+        const raw = (data as { models?: unknown }).models;
+        const models = Array.isArray(raw) ? (raw as string[]) : [];
+        const file = model.glb.split("/").pop() ?? "";
+        setStatus(models.includes(file) ? "ready" : "missing");
       })
       .catch(() => {
         if (!cancelled) setStatus("missing");
